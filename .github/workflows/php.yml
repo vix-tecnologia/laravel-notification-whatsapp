@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [7.4, 8.0, 8.1, 8.2]
+        php: ['7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5']
 
     name: Tests on PHP ${{ matrix.php }} - ${{ matrix.stability }}
 
@@ -38,7 +38,6 @@ jobs:
         run: |
           wget https://scrutinizer-ci.com/ocular.phar
           php ocular.phar code-coverage:upload --format=php-clover coverage.clover
-        # Disable on PHP 8 as Ocular isn't supported
         if: matrix.php < 8
 
       - name: Run PHPStan
